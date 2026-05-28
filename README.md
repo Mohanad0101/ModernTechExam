@@ -1,6 +1,6 @@
 # ModernTechExam
 
-Clean GitHub Pages exam app for **Modern Programming Technologies**.
+Exam app for **Modern Programming Technologies**.
 
 ## Exam settings
 
@@ -11,4 +11,4 @@ Clean GitHub Pages exam app for **Modern Programming Technologies**.
 - Password required before start
 - Auto-submit when time finishes
 - Printable result sheet with student information
-- Built-in 2-phase readiness check at `?qa=1`
+
