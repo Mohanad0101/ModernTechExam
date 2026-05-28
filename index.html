@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Modern Programming Technologies — Exam Test</title>
+  <link rel="stylesheet" href="assets/styles.css" />
+</head>
+<body>
+  <div class="topbar">
+    <div class="topbar-inner">
+      <div class="brand">
+        <strong>Modern Programming Technologies — Exam Test</strong>
+        <span id="topStatus">Ready</span>
+      </div>
+      <div id="timer" class="timer-pill">40:00</div>
+    </div>
+  </div>
+
+  <main class="app">
+    <section id="startView" class="hero">
+      <div class="card">
+        <h1>Final Exam Test<br><span style="color:var(--primary-dark)">40 marks · 40 minutes</span></h1>
+        <p>
+          Students enter their group, sequence number, full name, and the teacher-provided password. The exam randomly selects 40 verified questions, shows them one by one, and closes automatically when time finishes.
+        </p>
+        <div class="meta-grid">
+          <div class="meta"><b id="metaQuestions">40</b><span>random questions</span></div>
+          <div class="meta"><b id="metaMarks">40</b><span>total marks</span></div>
+          <div class="meta"><b id="metaTime">40</b><span>minutes</span></div>
+          <div class="meta"><b id="metaSources">52</b><span>verified bank questions</span></div>
+        </div>
+        <div class="notice warn">
+          Students must enter their information and the teacher-provided exam password before the exam starts. Static GitHub Pages can calculate and print results, but it cannot securely store results on a private server.
+        </div>
+      </div>
+
+      <form id="studentForm" class="card" autocomplete="off">
+        <label for="group">Group</label>
+        <input id="group" name="group" placeholder="Example: PI24v" required />
+
+        <div class="form-row">
+          <div>
+            <label for="sequence">Sequence number</label>
+            <input id="sequence" name="sequence" inputmode="numeric" placeholder="Example: 12" required />
+          </div>
+          <div>
+            <label for="fullName">Full name</label>
+            <input id="fullName" name="fullName" autocomplete="name" placeholder="Surname Name" required />
+          </div>
+        </div>
+
+        <div id="examPasswordBox" class="exam-password-box">
+          <label for="examPassword">Exam password</label>
+          <input id="examPassword" name="examPassword" type="password" autocomplete="off" placeholder="Password from teacher" required />
+          <p class="field-hint">The exam starts only after a valid password is entered. The password is not saved in the result file.</p>
+        </div>
+
+        <div id="loadMessage" class="notice hidden"></div>
+        <div class="btn-row">
+          <button class="btn-primary" type="submit">Start 40-question exam</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="examView" class="exam-shell hidden">
+      <aside class="sidebar card">
+        <strong id="studentMini">Student</strong>
+        <div class="muted" style="font-size:13px" id="studentDetails">—</div>
+        <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
+        <div id="progressText" class="muted" style="font-size:14px">Answered: 0 / 40</div>
+        <div id="questionNav" class="question-nav"></div>
+        <div class="btn-row">
+          <div id="questionCounter" class="question-counter">Question 1 / 40</div>
+          <button class="btn-secondary" type="button" id="prevQuestionBtn">Previous question</button>
+          <button class="btn-primary" type="button" id="nextQuestionBtn">Next question</button>
+          <button class="btn-danger" type="button" id="submitBtn">Finish test</button>
+          <button class="btn-ghost" type="button" id="backTopBtn">Top</button>
+        </div>
+      </aside>
+      <div id="questionsContainer"></div>
+    </section>
+
+    <section id="resultView" class="card hidden">
+      <h2>Printable Result Sheet</h2>
+      <div class="result-big" id="resultScore">—</div>
+      <div id="resultMessage">—</div>
+      <table class="result-table"><tbody id="resultRows"></tbody></table>
+      <div class="btn-row">
+        <button class="btn-primary" type="button" id="printResultBtn">Print result</button>
+        <button class="btn-secondary" type="button" id="downloadCsvBtn">Download CSV</button>
+        <button class="btn-secondary" type="button" id="downloadJsonBtn">Download JSON</button>
+        <button class="btn-ghost" type="button" id="copyResultBtn">Copy result</button>
+        <button class="btn-ghost" type="button" id="restartBtn">New attempt</button>
+      </div>
+    </section>
+
+    <section id="qaView" class="card hidden">
+      <h2>2-Phase Publish Readiness Check</h2>
+      <p class="muted">Phase 1 checks technical readiness: 40 questions, 40 marks, 40 minutes, password gate, one-question mode, and auto-close on timeout. Phase 2 checks scientific readiness: each bank item has options, a valid answer key, unique ID, verified status, and rationale.</p>
+      <div id="qaSummary" class="qa-grid"></div>
+      <h3>Details</h3>
+      <div id="qaDetails" class="qa-list">—</div>
+      <div class="btn-row">
+        <button class="btn-ghost" type="button" id="closeQaBtn">Back</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="assets/question-bank.js"></script>
+  <script src="assets/app.js"></script>
+</body>
+</html>
