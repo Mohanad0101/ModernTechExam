@@ -1,14 +1,40 @@
 # ModernTechExam
 
-Exam app for **Modern Programming Technologies**.
+Экзамен по современным технологиям программирования для GitHub Pages.
 
-## Exam settings
+## Параметры экзамена
 
-- 40 random questions
-- 40 marks
-- 40 minutes
-- One question displayed at a time
-- Password required before start
-- Auto-submit when time finishes
-- Printable result sheet with student information
+- 60 случайных вопросов
+- 40 минут
+- 40 баллов
+- пароль перед началом
+- один вопрос на экране
+- автоматическая отправка при окончании времени
+- печать результата и данных студента
 
+## Структура репозитория
+
+```text
+index.html
+assets/app.js
+assets/question-bank.js
+assets/styles.css
+.github/workflows/pages.yml
+.nojekyll
+README.md
+```
+
+## Публикация
+
+1. Загрузите файлы в репозиторий `ModernTechExam`.
+2. Откройте `Settings` → `Pages`.
+3. В разделе `Build and deployment` выберите `GitHub Actions`.
+4. Откройте опубликованную страницу:
+
+```text
+https://ВАШ-ЛОГИН-GITHUB.github.io/ModernTechExam/
+```
+
+## Важно
+
+GitHub Pages — статический хостинг. Пароль и отображение одного вопроса за раз уменьшают обычное списывание, но не заменяют серверную систему экзаменов для строго контролируемой аттестации.

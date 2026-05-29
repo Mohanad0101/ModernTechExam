@@ -1,109 +1,127 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru" dir="ltr">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Modern Programming Technologies — Exam Test</title>
+  <title>Экзамен по современным технологиям программирования</title>
   <link rel="stylesheet" href="assets/styles.css" />
 </head>
 <body>
-  <div class="topbar">
+  <header class="topbar">
     <div class="topbar-inner">
       <div class="brand">
-        <strong>Modern Programming Technologies — Exam Test</strong>
-        <span id="topStatus">Ready</span>
+        <strong>Экзамен по современным технологиям программирования</strong>
+        <span id="topStatus">Перед началом</span>
       </div>
       <div id="timer" class="timer-pill">40:00</div>
     </div>
-  </div>
+  </header>
 
   <main class="app">
     <section id="startView" class="hero">
-      <div class="card">
-        <h1>Final Exam Test<br><span style="color:var(--primary-dark)">40 marks · 40 minutes</span></h1>
+      <div class="card intro-card">
+        <h1>Итоговый экзамен<br><span>40 баллов · 40 минут</span></h1>
         <p>
-          Students enter their group, sequence number, full name, and the teacher-provided password. The exam randomly selects 40 verified questions, shows them one by one, and closes automatically when time finishes.
+          Введите данные студента и пароль, выданный преподавателем. После начала экзамена на экране будет отображаться один вопрос. Когда время закончится, экзамен будет автоматически отправлен.
         </p>
         <div class="meta-grid">
-          <div class="meta"><b id="metaQuestions">40</b><span>random questions</span></div>
-          <div class="meta"><b id="metaMarks">40</b><span>total marks</span></div>
-          <div class="meta"><b id="metaTime">40</b><span>minutes</span></div>
-          <div class="meta"><b id="metaSources">52</b><span>verified bank questions</span></div>
+          <div class="meta"><b id="metaQuestions">60</b><span>случайных вопросов</span></div>
+          <div class="meta"><b id="metaMarks">40</b><span>максимальных баллов</span></div>
+          <div class="meta"><b id="metaTime">40</b><span>минут</span></div>
         </div>
         <div class="notice warn">
-          Students must enter their information and the teacher-provided exam password before the exam starts. Static GitHub Pages can calculate and print results, but it cannot securely store results on a private server.
+          Проверьте данные перед началом. Не закрывайте страницу и не переключайтесь между окнами во время экзамена.
         </div>
       </div>
 
       <form id="studentForm" class="card" autocomplete="off">
-        <label for="group">Group</label>
-        <input id="group" name="group" placeholder="Example: PI24v" required />
+        <label for="group">Группа</label>
+        <input id="group" name="group" placeholder="Например: ПИ24в" required />
 
         <div class="form-row">
           <div>
-            <label for="sequence">Sequence number</label>
-            <input id="sequence" name="sequence" inputmode="numeric" placeholder="Example: 12" required />
+            <label for="sequence">Порядковый номер</label>
+            <input id="sequence" name="sequence" inputmode="numeric" placeholder="Например: 12" required />
           </div>
           <div>
-            <label for="fullName">Full name</label>
-            <input id="fullName" name="fullName" autocomplete="name" placeholder="Surname Name" required />
+            <label for="fullName">Полное имя</label>
+            <input id="fullName" name="fullName" autocomplete="name" placeholder="Введите полное имя" required />
           </div>
         </div>
 
-        <div id="examPasswordBox" class="exam-password-box">
-          <label for="examPassword">Exam password</label>
-          <input id="examPassword" name="examPassword" type="password" autocomplete="off" placeholder="Password from teacher" required />
-          <p class="field-hint">The exam starts only after a valid password is entered. The password is not saved in the result file.</p>
-        </div>
+        <label for="examPassword">Пароль экзамена</label>
+        <input id="examPassword" name="examPassword" type="password" autocomplete="off" placeholder="Пароль от преподавателя" required />
 
         <div id="loadMessage" class="notice hidden"></div>
         <div class="btn-row">
-          <button class="btn-primary" type="submit">Start 40-question exam</button>
+          <button class="btn-primary" type="submit">Начать экзамен</button>
         </div>
       </form>
     </section>
 
     <section id="examView" class="exam-shell hidden">
       <aside class="sidebar card">
-        <strong id="studentMini">Student</strong>
-        <div class="muted" style="font-size:13px" id="studentDetails">—</div>
+        <strong id="studentMini">Студент</strong>
+        <div class="muted" id="studentDetails">—</div>
         <div class="progress-bar"><div id="progressFill" class="progress-fill"></div></div>
-        <div id="progressText" class="muted" style="font-size:14px">Answered: 0 / 40</div>
+        <div id="progressText" class="muted">Ответов: 0 / 60</div>
         <div id="questionNav" class="question-nav"></div>
-        <div class="btn-row">
-          <div id="questionCounter" class="question-counter">Question 1 / 40</div>
-          <button class="btn-secondary" type="button" id="prevQuestionBtn">Previous question</button>
-          <button class="btn-primary" type="button" id="nextQuestionBtn">Next question</button>
-          <button class="btn-danger" type="button" id="submitBtn">Finish test</button>
-          <button class="btn-ghost" type="button" id="backTopBtn">Top</button>
+        <div class="btn-row vertical-actions">
+          <div id="questionCounter" class="question-counter">Вопрос 1 / 60</div>
+          <button class="btn-secondary" type="button" id="prevQuestionBtn">Предыдущий вопрос</button>
+          <button class="btn-primary" type="button" id="nextQuestionBtn">Следующий вопрос</button>
+          <button class="btn-danger" type="button" id="submitBtn">Завершить экзамен</button>
         </div>
       </aside>
       <div id="questionsContainer"></div>
     </section>
 
-    <section id="resultView" class="card hidden">
-      <h2>Printable Result Sheet</h2>
-      <div class="result-big" id="resultScore">—</div>
-      <div id="resultMessage">—</div>
-      <table class="result-table"><tbody id="resultRows"></tbody></table>
-      <div class="btn-row">
-        <button class="btn-primary" type="button" id="printResultBtn">Print result</button>
-        <button class="btn-secondary" type="button" id="downloadCsvBtn">Download CSV</button>
-        <button class="btn-secondary" type="button" id="downloadJsonBtn">Download JSON</button>
-        <button class="btn-ghost" type="button" id="copyResultBtn">Copy result</button>
-        <button class="btn-ghost" type="button" id="restartBtn">New attempt</button>
-      </div>
-    </section>
+    <section id="resultView" class="result-stage hidden">
+      <article class="card result-card final-result-card">
+        <div class="result-header">
+          <div>
+            <p class="result-kicker">Итоговый результат</p>
+            <h2 id="resultStudentName">—</h2>
+            <p id="resultStudentMeta" class="result-student-meta">—</p>
+          </div>
+          <div class="result-score-badge" aria-label="Итоговый балл">
+            <span>Баллы</span>
+            <strong id="resultScore">—</strong>
+            <em id="resultPercent">—</em>
+          </div>
+        </div>
 
-    <section id="qaView" class="card hidden">
-      <h2>2-Phase Publish Readiness Check</h2>
-      <p class="muted">Phase 1 checks technical readiness: 40 questions, 40 marks, 40 minutes, password gate, one-question mode, and auto-close on timeout. Phase 2 checks scientific readiness: each bank item has options, a valid answer key, unique ID, verified status, and rationale.</p>
-      <div id="qaSummary" class="qa-grid"></div>
-      <h3>Details</h3>
-      <div id="qaDetails" class="qa-list">—</div>
-      <div class="btn-row">
-        <button class="btn-ghost" type="button" id="closeQaBtn">Back</button>
-      </div>
+        <div id="resultMessage" class="result-message">—</div>
+
+        <div class="result-summary-grid">
+          <div class="result-stat">
+            <span>Правильные ответы</span>
+            <strong id="resultCorrect">—</strong>
+          </div>
+          <div class="result-stat">
+            <span>Отвечено</span>
+            <strong id="resultAnswered">—</strong>
+          </div>
+          <div class="result-stat">
+            <span>Время выполнения</span>
+            <strong id="resultDuration">—</strong>
+          </div>
+          <div class="result-stat">
+            <span>Статус</span>
+            <strong id="resultStatus">—</strong>
+          </div>
+        </div>
+
+        <div class="result-details-title">Детали экзамена</div>
+        <table class="result-table"><tbody id="resultRows"></tbody></table>
+
+        <div class="btn-row result-actions">
+          <button class="btn-primary" type="button" id="printResultBtn">Печать результата</button>
+          <button class="btn-secondary" type="button" id="downloadCsvBtn">Скачать CSV</button>
+          <button class="btn-ghost" type="button" id="copyResultBtn">Скопировать</button>
+          <button class="btn-ghost" type="button" id="restartBtn">Новая попытка</button>
+        </div>
+      </article>
     </section>
   </main>
 
