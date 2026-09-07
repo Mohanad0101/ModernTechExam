@@ -5,7 +5,7 @@ const SETTINGS = Object.freeze({
   randomizeQuestions: true,
   randomizeOptions: true,
   acceptedPasswordHashes: Object.freeze([
-    "ac16901a6bf19b592bd667222c014286cc130f86bbdf8d7bcb263ce18407fe78"
+    "97e524eab53cbed71c153d6cb167d2163ddd3c1cfa4ec4aa5a7195fab2b808ec"
   ]),
   passwordMaxAttempts: 5,
   passwordLockSeconds: 30,
